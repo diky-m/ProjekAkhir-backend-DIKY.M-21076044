@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Tugas extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_user',
+        'file',
+        'id_modul',
+        'tanggal',
+    ];
 }

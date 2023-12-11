@@ -25,3 +25,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // routing modul
 Route::get('/modul', [ModulController::class, 'index'])->name('modul.index');
+Route::get('/modul/tambahdata', [ModulController::class, 'create'])->name('modul.create');
+Route::get('/modul/edit/{id}', [ModulController::class, 'edit'])->name('modul.edit');
+Route::post('/modul/store', [ModulController::class, 'store'])->name('modul.store');
+Route::patch('/modul/update/{id}', [ModulController::class, 'update'])->name('modul.update');
+Route::delete('/modul/delete/{id}', [ModulController::class, 'destroy'])->name('modul.destroy');

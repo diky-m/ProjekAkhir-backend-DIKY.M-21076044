@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MobileApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::post('/mobile/login', [MobileApiController::class, 'login']);
+Route::get('/mobile/ceklogin', [MobileApiController::class, 'cekLogin']);
+Route::post('/mobile/register', [MobileApiController::class, 'register']);
+Route::post('/mobile/logout', [MobileApiController::class, 'logout']);
+Route::get('/mobile/modul', [MobileApiController::class, 'modul']);
+Route::post('/mobile/tugas', [MobileApiController::class, 'uploadTugas']);

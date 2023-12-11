@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Modul extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'judul',
+        'file',
+        'hari',
+    ];
 }
