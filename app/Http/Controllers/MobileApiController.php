@@ -103,9 +103,7 @@ class MobileApiController extends Controller
     public function logout(Request $request)
     {
 
-
-
-        $token = 'b65203d30bf0d147b42aa6ddf29a3fd7';
+        $token = '2002';
         $headerValue = $request->header('token');
 
         $user = auth()->user();
@@ -133,7 +131,7 @@ class MobileApiController extends Controller
     public function modul (Request $request)
     {
         
-        $token = 'b65203d30bf0d147b42aa6ddf29a3fd7';
+        $token = '2002';
         $headerValue = $request->header('token');
 
         $user = auth()->user();
@@ -152,7 +150,7 @@ class MobileApiController extends Controller
             $result [] = [
                 'judul'=>$item->judul,
                 'hari'=>$item->hari,
-                'file'=>'http://app_kasj.test/storage/modul/'.$item->file,
+                'file'=>'http://127.0.0.1:8000/storage/modul/'.$item->file,
             ];
         }
        
@@ -172,10 +170,8 @@ class MobileApiController extends Controller
     }
 
     public function uploadTugas(Request $request)
-    {
-
-         
-        $token = 'b65203d30bf0d147b42aa6ddf29a3fd7';
+    {    
+        $token = '2002';
         $headerValue = $request->header('token');
         $id_modul = $request->input('id_modul');
 

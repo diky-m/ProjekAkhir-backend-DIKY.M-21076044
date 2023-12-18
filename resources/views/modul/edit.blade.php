@@ -2,25 +2,16 @@
 
 @section('content')
 <div class="container">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            Edit Modul
+                            Modul
                         </div>
                        <div class="col-md-6">
-                        <a href="{{route('modul.index')}}" class="float-end btn btn-success">Kembali</a>
+                        <a href="{{route('modul.create')}}" class="float-end btn btn-success">Tambah Data</a>
                         </div>
                         
                     </div>
@@ -28,42 +19,38 @@
                 
 
                 <div class="card-body">
-                    <form action="{{route('modul.update', $data->id)}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('patch') 
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Judul</label>
-                          <input  name="judul" type="teks" class="form-control" value="{{$data->judul}}" id="exampleInputEmail1" aria-describedby="emailHelp" required>   
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Hari</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @foreach ($data as $item)
+                         <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->judul}}</td>
+                            <td>{{$item->file}}</td>
+                            <td>{{$item->hari}}</td>
+                            <td>
+                                <a href="{{route('modul.edit',$item->id)}}" class="btn btn-primary">Edit</a>
+                                <form action="{{route('modul.destroy', $item->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                              
+                            </td>
                           
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">file</label>
-                            <input name="file" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                           
-                          </div> 
-                          <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Hari</label>
-                            <select name="hari" class="form-select" id="inputGroupSelect02" required>
-                              <option value="">Pilih Hari..</option>
-                              <option value="Senin" {{$data->hari == 'Senin' ? 'selected' : ''}}>Senin</option>
-                              <option value="Selasa" {{$data->hari == 'Selasa' ? 'selected' : ''}}>Selasa</option>
-                              <option value="Rabu" {{$data->hari == 'Rabu' ? 'selected' : ''}}>Rabu</option>
-                              <option value="Kamis" {{$data->hari == 'Kamis' ? 'selected' : ''}}>Kamis</option>
-                            </select>
-                            
-                          </div>
-                          <div class="form-floating mb-3">
-                            <textarea class="form-control"  name="referensi" placeholder="Masukkan Referensi Disini" id="floatingTextarea2" style="height: 100px">{{$referensi->referensi}}
-                            </textarea>
-                            <label for="floatingTextarea2">Referensi</label>
-                          </div>
-                         
-                          
-
-                        
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-                   
+                         </tr>
+                             
+                         @endforeach
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>
